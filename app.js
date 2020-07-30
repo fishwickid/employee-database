@@ -22,29 +22,74 @@ function runSearch() {
       type: "list",
       message: "What would you like to do?",
       choices: [
-        "Find songs by artist",
-        "Find all artists who appear more than once",
-        "Find data within a specific range",
-        "Search for a specific song",
+        "Show all employees",
+        "Show employee by deparment",
+        "Show employees by manager",
+        "Add employee",
+        "Remove an employee",
+        "Update an employee",
+        // "Update employee manager",
+        "View all roles",
+        "Add Role",
+        "Remove role",
+        "View all departments",
+        "Add department",
+        "Remove department",
         "exit"
       ]
     })
     .then(function(answer) {
       switch (answer.action) {
-      case "Find songs by artist":
-        artistSearch();
+      case "Show all employees":
+        showEmployees();
         break;
 
-      case "Find all artists who appear more than once":
-        multiSearch();
+      case "Show employee by deparment":
+        showEmployeeByDepartment();
         break;
 
-      case "Find data within a specific range":
-        rangeSearch();
+      case "Show employees by manager":
+        showEmployeeByManager();
         break;
 
-      case "Search for a specific song":
-        songSearch();
+      case "Add employee":
+        addEmployee();
+        break;
+
+      case "Remove an employee":
+        removeEmployee();
+        break;
+
+      case "Update an employee":
+        updateEmployee();
+        break;
+
+      case "Update employee manager":
+        updateEmployeeManager();
+        break;
+
+      case "View all roles":
+        viewAllRoles();
+        break;
+
+      case "Add Role":
+        addRole();
+        break;
+
+      case "Remove role":
+        removeRoll();
+        break;
+
+      case "View all departments":
+        viewAllDepartments();
+        break;
+
+      case "Add department":
+        addDepartment();
+        break;
+
+      case "Remove department":
+        removeDepartment();
         break;
 
       case "exit":
@@ -52,6 +97,16 @@ function runSearch() {
         break;
       }
     });
+}
+
+
+function showEmployees() {
+  var query = "SELECT * FROM employees;";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res)
+    runSearch();
+  });
 }
 
 function artistSearch() {

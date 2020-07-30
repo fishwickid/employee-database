@@ -1,5 +1,0 @@
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=root
-MYSQL_PASS=chad1985
-MYSQL_DB=employeeTrackerDB
