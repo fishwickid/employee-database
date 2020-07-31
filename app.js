@@ -23,11 +23,11 @@ function runSearch() {
       message: "What would you like to do?",
       choices: [
         "Show all employees",
-        "Show employee by deparment",
-        "Show employees by manager",
+        "Show all roles",
+        "Show all departments",
         "Add employee",
-        "Remove an employee",
-        "Update an employee",
+        "Add role",
+        "Department",
         // "Update employee manager",
         "View all roles",
         "Add Role",
@@ -44,24 +44,24 @@ function runSearch() {
         showEmployees();
         break;
 
-      case "Show employee by deparment":
-        showEmployeeByDepartment();
+      case "Show all roles":
+        showRoles();
         break;
 
-      case "Show employees by manager":
-        showEmployeeByManager();
+      case "Show all departments":
+        showDepartments();
         break;
 
       case "Add employee":
         addEmployee();
         break;
 
-      case "Remove an employee":
-        removeEmployee();
+      case "Add role":
+        addRole();
         break;
 
-      case "Update an employee":
-        updateEmployee();
+      case "Add department":
+        addEmployee();
         break;
 
       case "Update employee manager":
@@ -101,7 +101,7 @@ function runSearch() {
 
 
 function showEmployees() {
-  var query = "SELECT * FROM employees;";
+  var query = "SELECT * FROM employee;";
   connection.query(query, function(err, res) {
     if (err) throw err;
     console.table(res)
@@ -109,10 +109,31 @@ function showEmployees() {
   });
 }
 
-function artistSearch() {
+
+function showRoles() {
+  var query = "SELECT * FROM roles;";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res)
+    runSearch();
+  });
+}
+
+
+function showDepartments() {
+  var query = "SELECT * FROM department;";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    console.table(res)
+    runSearch();
+  });
+}
+
+
+function addEmployee() {
   inquirer
     .prompt({
-      name: "artist",
+      name: "employee",
       type: "input",
       message: "What artist would you like to search for?"
     })
